@@ -1,26 +1,26 @@
-import 'package:counter_app/counter_bloc.dart';
+import 'package:counter_app/counter/counter_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterBlocPage extends StatefulWidget {
-  const CounterBlocPage({super.key});
+class CounterCubitPage extends StatefulWidget {
+  const CounterCubitPage({super.key});
 
   @override
-  State<CounterBlocPage> createState() => _CounterBlocPageState();
+  State<CounterCubitPage> createState() => _CounterCubitPageState();
 }
 
-class _CounterBlocPageState extends State<CounterBlocPage> {
-  late final CounterBloc _counterBloc;
+class _CounterCubitPageState extends State<CounterCubitPage> {
+  late final CounterCubit counterCubit;
 
   @override
   void initState() {
-    _counterBloc = CounterBloc();
+    counterCubit = CounterCubit();
     super.initState();
   }
 
   @override
   void dispose() {
-    _counterBloc.close();
+    counterCubit.close();
     super.dispose();
   }
 
@@ -28,7 +28,7 @@ class _CounterBlocPageState extends State<CounterBlocPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BLOC'),
+        title: const Text('CUBIT'),
       ),
       body: Center(
         child: Column(
@@ -37,8 +37,8 @@ class _CounterBlocPageState extends State<CounterBlocPage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            BlocBuilder<CounterBloc, int>(
-              bloc: _counterBloc,
+            BlocBuilder<CounterCubit, int>(
+              bloc: counterCubit,
               builder: (context, state) {
                 return Text(
                   '$state',
@@ -50,7 +50,7 @@ class _CounterBlocPageState extends State<CounterBlocPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _counterBloc.add(IncrementEvent()),
+        onPressed: () => counterCubit.increment(),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

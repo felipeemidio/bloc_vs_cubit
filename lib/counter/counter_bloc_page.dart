@@ -1,27 +1,26 @@
-import 'package:counter_app/counter_bloc.dart';
-import 'package:counter_app/counter_cubit.dart';
+import 'package:counter_app/counter/counter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterCubitPage extends StatefulWidget {
-  const CounterCubitPage({super.key});
+class CounterBlocPage extends StatefulWidget {
+  const CounterBlocPage({super.key});
 
   @override
-  State<CounterCubitPage> createState() => _CounterCubitPageState();
+  State<CounterBlocPage> createState() => _CounterBlocPageState();
 }
 
-class _CounterCubitPageState extends State<CounterCubitPage> {
-  late final CounterCubit counterCubit;
+class _CounterBlocPageState extends State<CounterBlocPage> {
+  late final CounterBloc _counterBloc;
 
   @override
   void initState() {
-    counterCubit = CounterCubit();
+    _counterBloc = CounterBloc();
     super.initState();
   }
 
   @override
   void dispose() {
-    counterCubit.close();
+    _counterBloc.close();
     super.dispose();
   }
 
@@ -29,7 +28,7 @@ class _CounterCubitPageState extends State<CounterCubitPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CUBIT'),
+        title: const Text('BLOC'),
       ),
       body: Center(
         child: Column(
@@ -38,8 +37,8 @@ class _CounterCubitPageState extends State<CounterCubitPage> {
             const Text(
               'You have pushed the button this many times:',
             ),
-            BlocBuilder<CounterCubit, int>(
-              bloc: counterCubit,
+            BlocBuilder<CounterBloc, int>(
+              bloc: _counterBloc,
               builder: (context, state) {
                 return Text(
                   '$state',
@@ -51,7 +50,7 @@ class _CounterCubitPageState extends State<CounterCubitPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => counterCubit.increment(),
+        onPressed: () => _counterBloc.add(IncrementEvent()),
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
