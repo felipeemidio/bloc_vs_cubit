@@ -1,5 +1,7 @@
 import 'package:counter_app/counter/counter_bloc_page.dart';
 import 'package:counter_app/counter/counter_cubit_page.dart';
+import 'package:counter_app/login/login_bloc_page.dart';
+import 'package:counter_app/login/login_cubit_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,15 +31,31 @@ class HomePage extends StatelessWidget {
                       context,
                       MaterialPageRoute(builder: (context) => const CounterBlocPage()),
                     ),
-                    child: const Text('Bloc Page'),
+                    child: const Text('Counter Bloc Page'),
                   ),
-                  const SizedBox(height: 24,),
+                  const SizedBox(height: 24),
                   ElevatedButton(
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => const CounterCubitPage()),
                     ),
-                    child: const Text('Cubit Page'),
+                    child: const Text('Counter Cubit Page'),
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginBlocPage()),
+                    ),
+                    child: const Text('Login Bloc Page'),
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const LoginCubitPage()),
+                    ),
+                    child: const Text('Login Cubit Page'),
                   ),
                 ],
               );
